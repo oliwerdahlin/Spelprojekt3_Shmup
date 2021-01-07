@@ -1,1 +1,4 @@
-﻿
+﻿  stdafx.cpp
+  Game.cpp
+  GameWorld.cpp
+  Game.vcxproj -> D:\Github\Spelprojekt3_Shmup\Source\..\Lib\Game_Debug.lib
