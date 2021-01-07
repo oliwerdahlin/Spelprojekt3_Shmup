@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include <tga2d/Engine.h>
 #include "Game.h"
-
 #include <tga2d/error/error_manager.h>
 
 using namespace std::placeholders;
@@ -21,11 +20,15 @@ std::wstring BUILD_NAME = L"Retail";
 
 CGame::CGame()
 {
+	Studio::InputManager::Construct();
+	Studio::Timer::Construct();
 }
 
 
 CGame::~CGame()
 {
+	Studio::Timer::Deconstruct();
+	Studio::InputManager::Deconstruct();
 }
 
 LRESULT CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -33,6 +36,7 @@ LRESULT CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	lParam;
 	wParam;
 	hWnd;
+	Studio::InputManager::GetInstance()->UpdateMouseInputEvents(hWnd, message, wParam, lParam);
 	switch (message)
 	{
 		// this message is read when the window is closed
@@ -82,6 +86,8 @@ void CGame::InitCallBack()
 
 void CGame::UpdateCallBack()
 {
+	Studio::Timer::GetInstance()->TUpdate();
+	Studio::InputManager::GetInstance()->Update();
 	myGameWorld.Update(Tga2D::CEngine::GetInstance()->GetDeltaTime());
 	myGameWorld.Render();
 

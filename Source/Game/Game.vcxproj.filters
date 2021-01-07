@@ -51,6 +51,12 @@
     <ClInclude Include="BaseObjects.h">
       <Filter>Components\Base Objects</Filter>
     </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -61,6 +67,12 @@
     </ClCompile>
     <ClCompile Include="GameWorld.cpp">
       <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Singletons</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
