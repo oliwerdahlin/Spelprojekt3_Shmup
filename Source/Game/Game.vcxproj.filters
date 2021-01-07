@@ -4,6 +4,24 @@
     <Filter Include="Precompiled">
       <UniqueIdentifier>{b07bafa4-d21c-4674-8f50-96a0b05e15ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{53725f1b-7d59-40e3-8400-6fcded99fc00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{7399bc29-53c6-4ef1-96fd-db6de37540c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{40d7a1db-3e4d-40a9-823f-4e47ea5c0893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Base Objects">
+      <UniqueIdentifier>{71a53bb1-f0af-4b39-8d46-4458c845f449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Wrappers">
+      <UniqueIdentifier>{ce5c6be1-3b4e-45a5-9487-fe5a4f53113c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Singletons">
+      <UniqueIdentifier>{68ccea7c-4110-4348-abc5-9cec330f20ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -12,17 +30,37 @@
     <ClInclude Include="targetver.h">
       <Filter>Precompiled</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameWorld.h" />
     <ClInclude Include="resource.h">
       <Filter>Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWorld.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="include.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="macros.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Singletons.h">
+      <Filter>Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseObjects.h">
+      <Filter>Components\Base Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Precompiled</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameWorld.cpp" />
+    <ClCompile Include="Game.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWorld.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
