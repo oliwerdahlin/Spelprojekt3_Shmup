@@ -56,6 +56,26 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Singletons</Filter>
+    <ClInclude Include="GameObject.h">
+      <Filter>Components\Base Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionObject.h">
+      <Filter>Components\Base Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="typedefs.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Wrappers.h">
+      <Filter>Wrappers</Filter>
+    </ClInclude>
+    <ClInclude Include="Health.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +93,20 @@
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Singletons</Filter>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Components\Base Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionObject.cpp">
+      <Filter>Components\Base Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Wrappers</Filter>
+    </ClCompile>
+    <ClCompile Include="Health.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
