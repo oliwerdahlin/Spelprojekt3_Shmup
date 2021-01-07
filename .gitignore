@@ -1,9 +1,1 @@
-*.obj
-*.tlog
-*.suo
-*.idb
-*.pdb
-*.vcxproj.user
-*.pch
-*.res
 .vs/
