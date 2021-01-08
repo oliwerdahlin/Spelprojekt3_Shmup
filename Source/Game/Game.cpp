@@ -29,6 +29,8 @@ CGame::~CGame()
 {
 	Studio::Timer::Deconstruct();
 	Studio::InputManager::Deconstruct();
+	myIsPlaying = false;
+	myGameLogic.join();
 }
 
 LRESULT CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -42,6 +44,7 @@ LRESULT CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		// this message is read when the window is closed
 	case WM_DESTROY:
 	{
+		myIsPlaying = false;
 		// close the application entirely
 		PostQuitMessage(0);
 		return 0;
@@ -55,7 +58,9 @@ LRESULT CGame::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 bool CGame::Init(const std::wstring& aVersion, HWND /*aHWND*/)
 {
 	Tga2D::SEngineCreateParameters createParameters;
-
+	myGamePlayDone = false;
+	myIsPlaying = true;
+	myHasSwappedBuffers = false;
 	createParameters.myInitFunctionToCall = [this] {InitCallBack(); };
 	createParameters.myWinProcCallback = [this](HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {return WinProc(hWnd, message, wParam, lParam); };
 	createParameters.myUpdateFunctionToCall = [this] {UpdateCallBack(); };
@@ -68,6 +73,7 @@ bool CGame::Init(const std::wstring& aVersion, HWND /*aHWND*/)
 		Tga2D::eDebugFeature_Filewatcher |
 		Tga2D::eDebugFeature_OptimiceWarnings;
 
+	myGameLogic = std::thread(&CGame::GamePlayThread, this);
 	if (!Tga2D::CEngine::Start(createParameters))
 	{
 		ERROR_PRINT("Fatal error! Engine could not start!");
@@ -86,9 +92,32 @@ void CGame::InitCallBack()
 
 void CGame::UpdateCallBack()
 {
-	Studio::Timer::GetInstance()->TUpdate();
-	Studio::InputManager::GetInstance()->Update();
-	myGameWorld.Update(Tga2D::CEngine::GetInstance()->GetDeltaTime());
 	myGameWorld.Render();
+	while (!myGamePlayDone)
+	{
+		std::this_thread::sleep_for(std::chrono::microseconds(1));
+	}
+	myGameWorld.SwapBuffers();
+	myGamePlayDone = false;
+	myHasSwappedBuffers = true;
 
+	if (!myIsPlaying) {
+		//close application properly
+	}
+}
+
+void CGame::GamePlayThread()
+{
+	while (myIsPlaying)
+	{
+		Studio::Timer::GetInstance()->TUpdate();
+		Studio::InputManager::GetInstance()->Update();
+		myGameWorld.Update(Studio::Timer::GetInstance()->TGetDeltaTime(), myIsPlaying);
+		myGamePlayDone = true;
+		while (!myHasSwappedBuffers)
+		{
+			std::this_thread::sleep_for(std::chrono::microseconds(1));
+		}
+		myHasSwappedBuffers = false;
+	}
 }

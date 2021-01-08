@@ -1,4 +1,5 @@
 #pragma once
+#include "Renderer.h"
 
 namespace Tga2D
 {
@@ -14,8 +15,10 @@ public:
 	~CGameWorld();
 
 	void Init();
-	void Update(float aTimeDelta); 
+	void Update(float aDeltaTime, std::atomic<bool>& aIsPlaying);
 	void Render();
+	void SwapBuffers();
 private:
+	Renderer myRenderer;
 	Tga2D::CSprite* myTga2dLogoSprite;
 };

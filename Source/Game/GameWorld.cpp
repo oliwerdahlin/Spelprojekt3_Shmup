@@ -17,31 +17,25 @@ CGameWorld::~CGameWorld()
 
 void CGameWorld::Init()  
 {
+	myRenderer.Init();
 	myTga2dLogoSprite = new Tga2D::CSprite("sprites/tga_logo.dds");
 	myTga2dLogoSprite->SetPivot({ 0.5f, 0.5f });
 	myTga2dLogoSprite->SetPosition({ 0.5f, 0.5f });
 }
 
-
-void CGameWorld::Update(float /*aTimeDelta*/)
+//aIsPlaying is an atomic bool to close the gameplay thread
+void CGameWorld::Update(float aDeltaTime, std::atomic<bool>& aIsPlaying)
 { 	
-	if (Studio::InputManager::GetInstance()->IsKeyPressed('D'))
-	{
-		std::cout << "D Pressed" << std::endl;
-	}
-	if (Studio::InputManager::GetInstance()->IsKeyDown('D'))
-	{
-		std::cout << "D key Down" << std::endl;
-	}
-	if (Studio::InputManager::GetInstance()->IsKeyUp('D'))
-	{
-		std::cout << "D key Up" << std::endl;
-	}
-	std::cout << "Delta Time: " << Studio::Timer::GetInstance()->TGetDeltaTime() << " Total Time: " << Studio::Timer::GetInstance()->TGetTotalTime() << std::endl;
-
+	
 }
 
 void CGameWorld::Render()
 {
 	myTga2dLogoSprite->Render();
+	myRenderer.Render();
+}
+
+void CGameWorld::SwapBuffers()
+{
+	myRenderer.SwapBuffers();
 }

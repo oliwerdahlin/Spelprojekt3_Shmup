@@ -57,6 +57,12 @@
     <ClInclude Include="Timer.h">
       <Filter>Singletons</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderCommand.h">
+      <Filter>Components\Base Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +79,12 @@
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderCommand.cpp">
+      <Filter>Components\Base Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
