@@ -1,0 +1,30 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  pch.cpp
+  CommonUtilities.cpp
+  CURandom.cpp
+C:\Users\Victor\Desktop\projects\2021\TGA\Spelprojekt3_Git\Source\CommonUtilities\CURandom.cpp(13,22): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  InputManager.cpp
+C:\Users\Victor\Desktop\projects\2021\TGA\Spelprojekt3_Git\Source\CommonUtilities\InputManager.cpp(8,26): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\Victor\Desktop\projects\2021\TGA\Spelprojekt3_Git\Source\CommonUtilities\InputManager.cpp(98,28): warning C4244: '=': conversion from 'const T' to 'LONG', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Victor\Desktop\projects\2021\TGA\Spelprojekt3_Git\Source\CommonUtilities\InputManager.cpp(99,28): warning C4244: '=': conversion from 'const T' to 'LONG', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Victor\Desktop\projects\2021\TGA\Spelprojekt3_Git\Source\CommonUtilities\InputManager.cpp(154,43): warning C4244: '=': conversion from 'LONG' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Victor\Desktop\projects\2021\TGA\Spelprojekt3_Git\Source\CommonUtilities\InputManager.cpp(155,43): warning C4244: '=': conversion from 'LONG' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Victor\Desktop\projects\2021\TGA\Spelprojekt3_Git\Source\CommonUtilities\InputManager.cpp(183,51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Timer.cpp
+  CommonUtilities.vcxproj -> C:\Users\Victor\Desktop\projects\2021\TGA\Spelprojekt3_Git\Source\AdditionalDependencies\Lib\CommonUtilities_Release_x64.lib
