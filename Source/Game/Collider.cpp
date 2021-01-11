@@ -8,12 +8,12 @@ namespace Studio
 
 	bool Collider::Intersects(const Collider& aCollider)
 	{
-		
+		return false;
 	}
 
 	bool Collider::Contains(const Collider& aCollider)
 	{
-
+		return false;
 	}
 	bool Collider::CircleToCircleCollision(CollisionObject& aFirstCollisionObject, CollisionObject& aSecondCollisionObject)
 	{
