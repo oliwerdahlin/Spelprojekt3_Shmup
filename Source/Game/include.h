@@ -4,3 +4,6 @@
 #include "Wrappers.h"
 #include "Singletons.h"
 #include "BaseObjects.h"
+#include "GameObject.h"
+#include "Bullet.h"
+#include "Player.h"

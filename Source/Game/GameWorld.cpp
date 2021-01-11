@@ -7,6 +7,8 @@
 CGameWorld::CGameWorld()
 {
 	myTga2dLogoSprite = nullptr;
+
+	SAFE_CREATE(myPlayer, Player());
 }
 
 CGameWorld::~CGameWorld() 
@@ -23,11 +25,16 @@ void CGameWorld::Init()
 	myTga2dLogoSprite->SetPosition({ 0.5f, 0.5f });
 }
 
+
+
 //aIsPlaying is an atomic bool to close the gameplay thread
 void CGameWorld::Update(float aDeltaTime, std::atomic<bool>& aIsPlaying)
-{ 	
+{
+	myPlayer->Update(aDeltaTime);
 	
 }
+
+
 
 void CGameWorld::Render()
 {

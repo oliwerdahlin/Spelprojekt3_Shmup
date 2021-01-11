@@ -33,10 +33,15 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>GameObjects\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Health.h" />
-    <ClInclude Include="macros.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -85,6 +90,15 @@
     <ClInclude Include="typedefs.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>GameObjects\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="macros.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BaseObjects">
@@ -98,6 +112,15 @@
     </Filter>
     <Filter Include="Singletons">
       <UniqueIdentifier>{5484a4d1-0364-4dd7-b82b-959a359b4697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{d175409f-1030-4fc4-b029-53892a0b7275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Player">
+      <UniqueIdentifier>{7d9d6124-657a-45d5-ab6a-bdaf0e279578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Bullet">
+      <UniqueIdentifier>{26bb6712-e0f2-4673-962f-9699856729fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

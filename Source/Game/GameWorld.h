@@ -1,6 +1,7 @@
 #pragma once
 #include "Renderer.h"
 
+class Player;
 namespace Tga2D
 {
 	class CSprite;
@@ -21,4 +22,5 @@ public:
 private:
 	Renderer myRenderer;
 	Tga2D::CSprite* myTga2dLogoSprite;
+	Player* myPlayer;
 };
