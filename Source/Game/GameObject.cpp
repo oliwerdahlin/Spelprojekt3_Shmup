@@ -6,11 +6,6 @@ namespace Studio
 		return mySprite;
 	}
 
-	Collider& Studio::GameObject::GetCollider()
-	{
-		return myCollider;
-	}
-
 	Health& Studio::GameObject::GetHealth()
 	{
 		return myHealth;
