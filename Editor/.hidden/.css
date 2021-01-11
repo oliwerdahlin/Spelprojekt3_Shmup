@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+/* .box {
+    display: block;
+    min-width: 5em;
+    min-height: 5em;
+    border: 3px solid rgba(0,0,0,0.25);
+    border-radius: 0.5em;
+    margin: 0.25em;
+    padding: 0.5em;
+    cursor: move;
+}
+.over {
+    border-style: dashed;
+    border-color: black;
+}
+.component { background-color: red; }
+.container { background-color: gold; } */
+
+*
+{
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+}
+
+html, body
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+#editor-window, #level-window
+{
+    border: 1px solid black;
+    display: inline-block;
+}
+
+#editor-window
+{
+    width: 25%;
+    position: fixed;
+    background-color: white;
+    overflow-x: scroll;
+}
+
+button
+{
+    display: inline-block;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    width: auto;
+    background-color: dodgerblue;
+    color: white;
+}
+
+input, select
+{
+    width: 9em;
+    background-color: whitesmoke;
+    border: none;
+    border-bottom: 2px solid silver;
+    text-align: center;
+}
+
+table
+{
+    width: 100%;
+}
+
+td
+{
+    text-align: center;
+}
+
+.enemy-box
+{
+    border: 3px solid rgba(0, 0, 0, 0.25);
+    border-radius: 0.5em;
+    background-color: greenyellow;
+    word-wrap: break-word;
+    margin: 0.5em;
+}
+.enemy-type
+{
+    display: inline-block;
+}
+.enemy-info
+{
+    display: inline-block;
+}
+
+#level-window
+{
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 25%;
+    display: flex;
+    flex-direction: row;
+}
+
+.pack
+{
+    border: 3px solid rgba(0, 0, 0, 0.25);
+    border-radius: 0.5em;
+    background-color: gainsboro;
+
+    display: inline-block;
+    min-width: 10em;
+    min-height: 5em;
+    margin: 7px 3px;
+}
+.drag-over
+{
+    border-style: dashed;
+}

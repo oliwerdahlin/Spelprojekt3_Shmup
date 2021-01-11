@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Editor</title>
+    <link rel="stylesheet" href=".hidden/.css">
+</head>
+<body>
+
+    <div id="editor-window">
+        <div class="import-export">
+            <button>Import</button>
+            <button>Export</button>
+        </div>
+        <hr>
+        <table>
+            <tr>
+                <th></th>
+                <th>Value</th>
+                <th>Presets</th>
+            </tr>
+            <tr>
+                <td contenteditable="true">Enemy </td>
+                <td>
+                    <input type="text" placeholder="Enemy" id="input-type">
+                </td>
+                <td>
+                    <select onchange="presetChange(event)">
+                        <option value="Default">Default</option>
+                        <option value="Gunner">Gunner</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th></th>
+                <th>X</th>
+                <th>Y</th>
+            </tr>
+            <tr>
+                <td>Position</td>
+                <td><input type="number" id="input-x" value="0"></td>
+                <td><input type="number" id="input-y" value="0"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Ms</th>
+            </tr>
+            <tr>
+                <td>Timer</td>
+                <td><input type="number" value="0" min="0" id="input-timer"></td>
+            </tr>
+        </table>
+        <button class="green" onclick="createEnemy()">Create Enemy</button>
+        <button class="red" onclick="clearParameters()">Clear</button>
+        <hr>
+        <div id="enemy-spawner"></div>
+    </div>
+    <div id="level-window">
+        <div class="pack"></div>
+        <div class="pack"></div>
+        <div class="pack"></div>
+        <div class="pack"></div>
+        <div class="pack"></div>
+        <div class="pack"></div>
+        <div class="pack"></div>
+        <div class="pack"></div>
+        <div class="pack"></div>
+        <div class="pack"></div>
+    </div>
+
+<script src=".hidden/clean.js"></script>
+<script src=".hidden/level_editor.js"></script>
+</body>
+</html>
