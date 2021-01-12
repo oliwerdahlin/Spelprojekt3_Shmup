@@ -45,7 +45,7 @@ function createEnemy()
     enemyBox.addEventListener("dragend", handleDragEnd, false);
     enemyBox.innerHTML = `
         <table>
-            <tr>
+            <tr class="enemy-table-header-row">
                 <th>Type</th>
                 <th>Position</th>
                 <th>Timer</th>
@@ -73,6 +73,7 @@ function addPackListeners(pack)
     pack.addEventListener("dragleave", handleDragLeave, false);
 }
 
+addPackListeners(document.getElementById("trashcan"));
 document.querySelectorAll(".pack").forEach(function(pack) {
     addPackListeners(pack);
 })
@@ -85,7 +86,6 @@ function handleDragStart(e)
     drag.active = true;
 
     drag.parent = this.parentNode;
-    console.log(drag);
 
     this.style.opacity = 0.4;
 }
@@ -95,12 +95,18 @@ function handleDragEnd(e)
     this.style.opacity = 1;
     drag.active = false;
 
-    console.log(drag);
-
     // Handle "drop"
     if (drag.id)
     {
-        document.getElementById(drag.id).appendChild(this);
+        let container = document.getElementById(drag.id);
+        if (container.classList.contains("trashcan"))
+        {
+            this.remove();
+        }
+        else
+        {
+            container.appendChild(this);
+        }
     }
 }
 
@@ -114,4 +120,27 @@ function handleDragEnter(e)
 function handleDragLeave(e)
 {
     this.classList.remove("drag-over");
+}
+
+
+function htmlToJson(div, obj)
+{
+    if (!obj) { obj = [] }
+    var tag = {}
+    tag['tagName'] = div.tagName
+    tag['children'] = []
+    if (div.children.length == 0)
+    {
+        tag.text = div.textContent;
+    }
+    for (var i = 0; i < div.children.length; i++)
+    {
+       tag['children'].push(htmlToJson(div.children[i]))
+    }
+    for (var i = 0; i < div.attributes.length; i++)
+    {
+       var attr = div.attributes[i]
+       tag['@'+attr.name] = attr.value
+    }
+    return tag;
 }
