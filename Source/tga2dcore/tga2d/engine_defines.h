@@ -23,6 +23,7 @@
 #define VECTOR2F Tga2D::Vector2<float>
 #define VECTOR2UI Tga2D::Vector2<unsigned int>
 #define VECTOR2I Tga2D::Vector2<int>
+#define VECTOR2D Tga2D::Vector2<double>
 #define VECTORFILE <tga2d/math/vector2imp.h>
 
 #define MAX_ANIMATION_BONES 64 //Want to increase this numer? Talk to Stefan Ek first please!

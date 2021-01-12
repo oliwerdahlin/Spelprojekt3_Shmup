@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 namespace Studio
 {
 	void Collider::AddColliderObject(CollisionObject& aCollisionObject)

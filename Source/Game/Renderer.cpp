@@ -9,14 +9,14 @@ void Renderer::Init()
 /// <summary>
 /// Add a game object to the render buffer
 /// </summary>
-void Renderer::AddGameObjectToRenderBuffer()
+void Renderer::RenderObject(Studio::RenderCommand aRenderCommand)
 {
-	//PushBack till GetWriteToBuffer() så det kan renderas
+	GetWriteToBuffer().push_back(aRenderCommand);
 }
 
 void Renderer::SwapBuffers()
 {
-	std::vector<RenderCommand>* temp_buffer_pointer = &(*myWriteToBuffer);
+	std::vector<Studio::RenderCommand>* temp_buffer_pointer = &(*myWriteToBuffer);
 	myWriteToBuffer = &(*myReadFromBuffer);
 	myReadFromBuffer = &(*temp_buffer_pointer);
 	myWriteToBuffer->clear();
@@ -27,16 +27,21 @@ void Renderer::Render()
 	//Render the CSprite on the render commands
 	for (int i = static_cast<int>(myReadFromBuffer->size()); i-- > 0;)
 	{
-		//GetReadFromBuffer()[i].Render();
+		GetReadFromBuffer()[i].Render();
 	}
 }
 
-std::vector<RenderCommand>& Renderer::GetReadFromBuffer() const
+//void Renderer::RenderRenderCommand(const Studio::RenderCommand& aRenderCommand)
+//{
+//	GetWriteToBuffer().push_back(aRenderCommand);
+//}
+
+std::vector<Studio::RenderCommand>& Renderer::GetReadFromBuffer() const
 {
 	return (*myReadFromBuffer);
 }
 
-std::vector<RenderCommand>& Renderer::GetWriteToBuffer()
+std::vector<Studio::RenderCommand>& Renderer::GetWriteToBuffer()
 {
 	return (*myWriteToBuffer);
 }

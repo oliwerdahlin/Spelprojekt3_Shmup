@@ -10,7 +10,6 @@ namespace Tga2D
 		Vector2() { x = 0; y = 0; }
 		Vector2(Type aX, Type aY) { x = aX; y = aY; }
 		Vector2(const Vector2<Type>& aVector) { x = aVector.x; y = aVector.y; }
-
 		template <class OtherType>
 		Vector2<Type>& operator=(const Vector2<OtherType>& aVector) { x = (Type)aVector.x; y = (Type)aVector.y; return *this; }
 
@@ -37,7 +36,10 @@ namespace Tga2D
 
 		Vector2<Type> Normal() const { return Vector2<Type>(y, -x); }
 		Vector2<Type>& Normalize();
-
+		inline Type Dot(const Vector2<Type>& aVector) const
+		{
+			return ((this->x * aVector.x) + (this->y * aVector.y));
+		}
 		union
 		{
 			Type x;
@@ -48,7 +50,11 @@ namespace Tga2D
 			Type y;
 			Type myY;
 		};
-		
+		static const Vector2
+			Zero,
+			UnitX,
+			UnitY,
+			One;
 	};
 
 
@@ -68,4 +74,10 @@ namespace Tga2D
 	}
 	typedef Vector2<float> Vector2f;
 	typedef Vector2<unsigned int>  Vector2ui;
+	typedef Vector2<double>  Vector2d;
+
+	template<typename T> const Vector2<T> Vector2<T>::Zero(static_cast<T>(0), static_cast<T>(0));
+	template<typename T> const Vector2<T> Vector2<T>::UnitX(static_cast<T>(1), static_cast<T>(0));
+	template<typename T> const Vector2<T> Vector2<T>::UnitY(static_cast<T>(0), static_cast<T>(1));
+	template<typename T> const Vector2<T> Vector2<T>::One(static_cast<T>(1), static_cast<T>(1));
 }

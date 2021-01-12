@@ -21,5 +21,6 @@ private:
 	std::atomic<bool> myHasSwappedBuffers;
 
 	std::atomic<bool> myIsPlaying;
+	std::atomic<bool> myHasStarted;
 	std::thread myGameLogic;
 };

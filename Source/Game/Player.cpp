@@ -1,5 +1,10 @@
 #include "stdafx.h"
-Player::Player()
+#include <tga2d/sprite/sprite.h>
+#include "Player.h"
+
+Player::Player(Tga2D::CSprite* aSprite) :
+	mySprite(aSprite),
+	Player::GameObject({ 0.5f, 0.5f }, aSprite)
 {
 	myPosition = { 0.5f, 0.5f };
 	mySpeed = 0.3f;
@@ -7,13 +12,12 @@ Player::Player()
 
 Player::~Player()
 {
-
 }
+
 
 void Player::Update(float aDeltaTime)
 {
-	//W
-	if (GetAsyncKeyState(0x57) && myPosition.y > 0.05f)
+	if (Studio::InputManager::GetInstance()->IsKeyDown('W'))
 	{
 		myPosition.y -= mySpeed * aDeltaTime;
 	}
@@ -32,8 +36,7 @@ void Player::Update(float aDeltaTime)
 	{
 		myPosition.x += mySpeed * aDeltaTime;
 	}
-	
-
+	Player::GameObject::Update(myPosition);
 	/*printf("\nX:%f", myPosition.x);
 	printf("\nY:%f", myPosition.y);*/
 }
@@ -42,3 +45,4 @@ void Player::Render()
 {
 
 }
+

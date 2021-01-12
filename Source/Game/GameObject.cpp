@@ -1,6 +1,15 @@
 #include "stdafx.h"
+#include "GameObject.h"
 namespace Studio
 {
+	void GameObject::Update(const Tga2D::Vector2f& aPos)
+	{
+		myRenderCommand.Update(aPos);
+	}
+	GameObject::GameObject(const Tga2D::Vector2f& aPos, Tga2D::CSprite* aSprite)
+		: myRenderCommand(aPos, aSprite)
+	{
+	}
 	Sprite& Studio::GameObject::GetSprite()
 	{
 		return mySprite;
@@ -9,6 +18,11 @@ namespace Studio
 	Health& Studio::GameObject::GetHealth()
 	{
 		return myHealth;
+	}
+
+	const Studio::RenderCommand& GameObject::GetRenderCommand() const
+	{
+		return myRenderCommand;
 	}
 
 	bool GameObject::Intersects(const GameObject& aGameObject)

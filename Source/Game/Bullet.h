@@ -1,4 +1,8 @@
 #pragma once
+namespace Tga2D
+{
+	class CSprite;
+}
 class Bullet : Studio::GameObject
 {
 public:
@@ -8,7 +12,7 @@ public:
 	void Update();
 private:
 	float mySpeed;
-
+	Tga2D::CSprite* mySprite;
 	VECTOR2F myPosition;
 	VECTOR2F myDirection;
 };

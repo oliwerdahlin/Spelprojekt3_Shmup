@@ -23,4 +23,5 @@ private:
 	Renderer myRenderer;
 	Tga2D::CSprite* myTga2dLogoSprite;
 	Player* myPlayer;
+
 };

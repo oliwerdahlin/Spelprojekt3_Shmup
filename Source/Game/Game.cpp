@@ -2,6 +2,8 @@
 #include <tga2d/Engine.h>
 #include "Game.h"
 #include <tga2d/error/error_manager.h>
+#include "Timer.h"
+#include "InputManager.h"
 
 using namespace std::placeholders;
 
@@ -60,12 +62,14 @@ bool CGame::Init(const std::wstring& aVersion, HWND /*aHWND*/)
 	Tga2D::SEngineCreateParameters createParameters;
 	myGamePlayDone = false;
 	myIsPlaying = true;
+	myHasStarted = false;
 	myHasSwappedBuffers = false;
 	createParameters.myInitFunctionToCall = [this] {InitCallBack(); };
 	createParameters.myWinProcCallback = [this](HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {return WinProc(hWnd, message, wParam, lParam); };
 	createParameters.myUpdateFunctionToCall = [this] {UpdateCallBack(); };
 	createParameters.myApplicationName = L"TGA 2D " + BUILD_NAME + L"[" + aVersion + L"] ";
 	//createParameters.myPreferedMultiSamplingQuality = Tga2D::EMultiSamplingQuality_High;
+	createParameters.myClearColor = (Tga2D::CColor{ 0,0,0,0 });
 	createParameters.myActivateDebugSystems = Tga2D::eDebugFeature_Fps |
 		Tga2D::eDebugFeature_Mem |
 		Tga2D::eDebugFeature_Drawcalls |
@@ -88,6 +92,7 @@ bool CGame::Init(const std::wstring& aVersion, HWND /*aHWND*/)
 void CGame::InitCallBack()
 {
 	myGameWorld.Init();
+	myHasStarted = true;
 }
 
 void CGame::UpdateCallBack()
@@ -110,14 +115,21 @@ void CGame::GamePlayThread()
 {
 	while (myIsPlaying)
 	{
-		Studio::Timer::GetInstance()->TUpdate();
-		Studio::InputManager::GetInstance()->Update();
-		myGameWorld.Update(Studio::Timer::GetInstance()->TGetDeltaTime(), myIsPlaying);
-		myGamePlayDone = true;
-		while (!myHasSwappedBuffers)
+		while (myHasStarted)
 		{
-			std::this_thread::sleep_for(std::chrono::microseconds(1));
+			Studio::Timer::GetInstance()->TUpdate();
+			Studio::InputManager::GetInstance()->Update();
+			myGameWorld.Update(Studio::Timer::GetInstance()->TGetDeltaTime(), myIsPlaying);
+			myGamePlayDone = true;
+			while (!myHasSwappedBuffers)
+			{
+				std::this_thread::sleep_for(std::chrono::microseconds(1));
+			}
+			myHasSwappedBuffers = false;
+			if (!myIsPlaying)
+			{
+				myHasStarted = true;
+			}
 		}
-		myHasSwappedBuffers = false;
 	}
 }
