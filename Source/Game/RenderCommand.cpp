@@ -4,10 +4,14 @@
 
 namespace Studio
 {
-	RenderCommand::RenderCommand(const Tga2D::Vector2f& aPos, Tga2D::CSprite* aSprite) :
+	RenderCommand::RenderCommand()
+	{
+		mySprite = nullptr;
+	}
+	RenderCommand::RenderCommand(Tga2D::CSprite* aSprite) :
 		mySprite(aSprite)
 	{
-		myPosition = aPos;
+		myPosition = Tga2D::Vector2f::One;
 		myRotation = 0;
 		myScale = Tga2D::Vector2f::One;
 	}

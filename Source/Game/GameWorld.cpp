@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "GameWorld.h"
 #include<iostream>
-#include <tga2d/sprite/sprite.h>
 #include "Player.h"
+#include <tga2d/sprite/sprite.h>
 
 CGameWorld::CGameWorld()
 {
@@ -22,7 +22,7 @@ void CGameWorld::Init()
 	myTga2dLogoSprite = new Tga2D::CSprite("sprites/tga_logo.dds");
 	myTga2dLogoSprite->SetPivot({ 0.5f, 0.5f });
 	myTga2dLogoSprite->SetPosition({ 0.5f, 0.5f });
-	SAFE_CREATE(myPlayer, Player(myTga2dLogoSprite));
+	SAFE_CREATE(myPlayer, Studio::Player(myTga2dLogoSprite));
 }
 
 //aIsPlaying is an atomic bool to close the gameplay thread

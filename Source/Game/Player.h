@@ -1,20 +1,23 @@
 #pragma once
-
+#include "GameObject.h"
 namespace Tga2D
 {
 	class CSprite;
 }
-class Player : public Studio::GameObject
+namespace Studio
 {
-public:
-	Player(Tga2D::CSprite* aSprite);
-	~Player();
-	void Update(float aDeltaTime);
-	void Render();
-private:
-	float mySpeed;
-	Tga2D::CSprite* mySprite;
-	VECTOR2F myPosition;
+	class Player : public GameObject
+	{
+	public:
+		Player(Tga2D::CSprite* aSprite);
+		~Player();
+		void Update(float aDeltaTime);
+		Studio::RenderCommand& GetRenderCommand();
+	private:
+		float mySpeed;
+		VECTOR2F myPosition;
 
-};
+	};
+}
+
 

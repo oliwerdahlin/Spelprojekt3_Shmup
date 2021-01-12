@@ -2,13 +2,12 @@
 #include "GameObject.h"
 namespace Studio
 {
+	GameObject::GameObject(Tga2D::CSprite* aSprite) : myRenderCommand(aSprite)
+	{
+	}
 	void GameObject::Update(const Tga2D::Vector2f& aPos)
 	{
 		myRenderCommand.Update(aPos);
-	}
-	GameObject::GameObject(const Tga2D::Vector2f& aPos, Tga2D::CSprite* aSprite)
-		: myRenderCommand(aPos, aSprite)
-	{
 	}
 	Sprite& Studio::GameObject::GetSprite()
 	{
@@ -20,7 +19,7 @@ namespace Studio
 		return myHealth;
 	}
 
-	const Studio::RenderCommand& GameObject::GetRenderCommand() const
+	Studio::RenderCommand& GameObject::GetRenderCommand() 
 	{
 		return myRenderCommand;
 	}

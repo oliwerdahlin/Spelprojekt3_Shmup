@@ -1,19 +1,20 @@
 #pragma once
-namespace Tga2D
+#include "GameObject.h"
+namespace Studio
 {
-	class CSprite;
+	class Bullet : GameObject
+	{
+	public:
+		Bullet() = default;
+		Bullet(VECTOR2F aPosition, const float& aSpeed, VECTOR2F aDirection);
+		~Bullet();
+		void Update();
+	private:
+		float mySpeed;
+
+		VECTOR2F myPosition;
+		VECTOR2F myDirection;
+	};
 }
-class Bullet : Studio::GameObject
-{
-public:
-	Bullet() = default;
-	Bullet(VECTOR2F aPosition, const float& aSpeed, VECTOR2F aDirection);
-	~Bullet();
-	void Update();
-private:
-	float mySpeed;
-	Tga2D::CSprite* mySprite;
-	VECTOR2F myPosition;
-	VECTOR2F myDirection;
-};
+
 
