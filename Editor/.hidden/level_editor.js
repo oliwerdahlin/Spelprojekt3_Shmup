@@ -1,11 +1,11 @@
 let enemyPresets = ["Pirate", "Gunner"];
 
-
 function scopedUniqueId()
 {
     var internalIdCounter = 0;
-    return function()
+    return function(reset = false)
     {
+        if (reset) internalIdCounter = 0;
         return "uid_" + internalIdCounter++;
     }
 }
@@ -24,6 +24,34 @@ function clearParameters()
     document.getElementById("input-timer").value = 0;
 }
 
+function createEnemyElement(type, pos, timer)
+{
+    let enemyBox = document.createElement("div");
+    enemyBox.setAttribute("draggable", "true");
+    enemyBox.addEventListener("dragstart", handleDragStart, false);
+    enemyBox.addEventListener("dragend", handleDragEnd, false);
+    enemyBox.innerHTML = `
+        <table>
+            <tr class="enemy-table-header-row">
+                <th>Type</th>
+                <th>Position</th>
+                <th>Timer</th>
+            </tr>
+            <tr>
+                <td>${type}</td>
+                <td>{${pos.x}, ${pos.y}}</td>
+                <td>${timer}ms</td>
+            </tr>
+        </table>
+    `;
+    enemyBox.dataset["type"] = type;
+    enemyBox.dataset["x"] = pos.x;
+    enemyBox.dataset["y"] = pos.y;
+    enemyBox.dataset["timer"] = timer;
+    enemyBox.classList.add("enemy-box");
+    return enemyBox;
+}
+
 createEnemy();
 function createEnemy()
 {
@@ -39,26 +67,8 @@ function createEnemy()
         data.type = "Enemy";
     }
 
-    let enemyBox = document.createElement("div");
-    enemyBox.setAttribute("draggable", "true");
-    enemyBox.addEventListener("dragstart", handleDragStart, false);
-    enemyBox.addEventListener("dragend", handleDragEnd, false);
-    enemyBox.innerHTML = `
-        <table>
-            <tr class="enemy-table-header-row">
-                <th>Type</th>
-                <th>Position</th>
-                <th>Timer</th>
-            </tr>
-            <tr>
-                <td>${data.type}</td>
-                <td>{${data.pos.x}, ${data.pos.y}}</td>
-                <td>${data.timer}ms</td>
-            </tr>
-        </table>
-    `;
+    let enemyBox = createEnemyElement(data.type, data.pos, data.timer);
 
-    enemyBox.classList.add("enemy-box");
     let spawner = document.getElementById("enemy-spawner");
     spawner.innerHTML = "";
     spawner.appendChild(enemyBox);
@@ -68,15 +78,24 @@ function createEnemy()
 
 function addPackListeners(pack)
 {
-    pack.id = uniqueId();
-    pack.addEventListener("dragenter", handleDragEnter, false);
-    pack.addEventListener("dragleave", handleDragLeave, false);
+    if (pack)
+    {
+        if (pack.id == "")
+            pack.id = uniqueId();
+        pack.addEventListener("dragenter", handleDragEnter, false);
+        pack.addEventListener("dragleave", handleDragLeave, false);
+    }
 }
 
-addPackListeners(document.getElementById("trashcan"));
-document.querySelectorAll(".pack").forEach(function(pack) {
-    addPackListeners(pack);
-})
+addFunctionalityToExistingPacks();
+function addFunctionalityToExistingPacks()
+{
+    uniqueId(true); // Reset id counter
+    addPackListeners(document.getElementById("trashcan"));
+    document.querySelectorAll(".pack").forEach(function(pack) {
+        addPackListeners(pack);
+    });
+}
 
 let drag = { active: true, id: undefined, parent: undefined };
 // Enemy-Box
@@ -122,25 +141,88 @@ function handleDragLeave(e)
     this.classList.remove("drag-over");
 }
 
-
-function htmlToJson(div, obj)
+// Download file to Client
+function downloadToFile(content, filename, contentType)
 {
-    if (!obj) { obj = [] }
-    var tag = {}
-    tag['tagName'] = div.tagName
-    tag['children'] = []
-    if (div.children.length == 0)
+    const file = new Blob([content], { type: contentType });
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(file);
+    a.download = filename;
+    a.click();
+
+    URL.revokeObjectURL(a.href);
+}
+
+// Save level to file
+function exportLevel()
+{
+    let data = { "Packs": [] };
+
+    let packElements = document.getElementById("level-window").children;
+    [...packElements].forEach(function(packElement)
     {
-        tag.text = div.textContent;
-    }
-    for (var i = 0; i < div.children.length; i++)
+        let pack = {
+            "ExitCondition": {
+                "Type": "WaitTillAllEnemiesAreDead"
+            },
+            "Enemies": []
+        };
+
+        [...packElement.children].forEach(function(enemyElement, i)
+        {
+            let enemy = {
+                type: null,
+                position: { x: null, y: null },
+                timer: null
+            };
+
+            enemy.type = enemyElement.dataset["type"];
+            enemy.timer = ~~enemyElement.dataset["timer"];
+            enemy.position.x = ~~enemyElement.dataset["x"];
+            enemy.position.y = ~~enemyElement.dataset["y"];
+
+            pack["Enemies"].push(enemy);
+        })
+
+        data["Packs"].push(pack);
+    });
+
+    downloadToFile(JSON.stringify(data) + "\n", "level_x", "application/json");
+}
+
+// Read file
+function importLevel(e)
+{
+    const file = e.target.files[0];
+    document.getElementById("file-name").textContent = file.name;
+    const reader = new FileReader();
+    reader.onload = function (e)
     {
-       tag['children'].push(htmlToJson(div.children[i]))
+        let content = JSON.parse(e.target.result);
+        console.log(content);
+
+        // Clear packs
+        document.getElementById("level-window").innerHTML = "";
+
+        // Add packs
+        content.Packs.forEach(function(packObject, i)
+        {
+            // Create pack elemet
+            let pack = document.createElement("div");
+            pack.classList.add("pack");
+
+            // Add enemies
+            packObject.Enemies.forEach(function(enemyObject)
+            {
+                console.log(enemyObject);
+                pack.appendChild(createEnemyElement(enemyObject.type, enemyObject.position, enemyObject.timer));
+            });
+
+            document.getElementById("level-window").appendChild(pack);
+        });
+
+        addFunctionalityToExistingPacks();
     }
-    for (var i = 0; i < div.attributes.length; i++)
-    {
-       var attr = div.attributes[i]
-       tag['@'+attr.name] = attr.value
-    }
-    return tag;
+    reader.readAsText(file);
 }
