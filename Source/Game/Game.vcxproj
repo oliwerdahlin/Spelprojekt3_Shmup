@@ -134,7 +134,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BaseObjects.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionObject.h" />
@@ -142,20 +141,16 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameWorld.h" />
     <ClInclude Include="Health.h" />
-    <ClInclude Include="include.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="macros.h" />
     <ClInclude Include="RenderCommand.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Singletons.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Timer.h" />
-    <ClInclude Include="typedefs.h" />
-    <ClInclude Include="Wrappers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />

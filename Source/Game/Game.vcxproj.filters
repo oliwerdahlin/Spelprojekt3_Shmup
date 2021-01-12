@@ -45,9 +45,6 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="BaseObjects.h">
-      <Filter>BaseObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>BaseObjects</Filter>
     </ClInclude>
@@ -66,19 +63,10 @@
     <ClInclude Include="RenderCommand.h">
       <Filter>BaseObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Wrappers.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="include.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
-      <Filter>Singletons</Filter>
-    </ClInclude>
-    <ClInclude Include="Singletons.h">
       <Filter>Singletons</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
@@ -86,9 +74,6 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Main</Filter>
-    </ClInclude>
-    <ClInclude Include="typedefs.h">
-      <Filter>Utility</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>GameObjects\Player</Filter>
