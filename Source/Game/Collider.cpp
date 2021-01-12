@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Collider.h"
 namespace Studio
 {
 	void Collider::AddColliderObject(CollisionObject& aCollisionObject)
@@ -37,6 +38,9 @@ namespace Studio
 	}
 	bool Collider::AABBToAABBCollision(CollisionObject& aFirstCollisionObject, CollisionObject& aSecondCollisionObject)
 	{
+		/*if(aFirstCollisionObject.GetPosition().x
+			
+			)*/
 		return false;
 	}
 }
