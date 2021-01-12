@@ -10,8 +10,17 @@
 
     <div id="editor-window">
         <div class="import-export">
-            <button>Import</button>
-            <button>Export</button>
+            <table>
+                <tr>
+                    <th>Editing</th>
+                </tr>
+                <tr>
+                    <td id="file-name"><i>Empty Project</i></td>
+                </tr>
+            </table>
+            <input type="file" id="input-file" hidden="true" multiple="false" onchange="importLevel(event)">
+            <label for="input-file" class="button">Import &#129131;</label>
+            <button onclick="exportLevel()">Export &#129133;</button>
         </div>
         <hr>
         <table>
