@@ -15,6 +15,7 @@ CGameWorld::~CGameWorld()
 {
 	delete myTga2dLogoSprite;
 	myTga2dLogoSprite = nullptr;
+	SAFE_DELETE(myPlayer);
 }
 
 void CGameWorld::Init()  
@@ -24,7 +25,8 @@ void CGameWorld::Init()
 	myTga2dLogoSprite = new Tga2D::CSprite("sprites/tga_logo.dds");
 	myTga2dLogoSprite->SetPivot({ 0.5f, 0.5f });
 	myTga2dLogoSprite->SetPosition({ 0.5f, 0.5f });
-	SAFE_CREATE(myPlayer, Studio::Player(myTga2dLogoSprite));
+	SAFE_CREATE(myPlayer, Studio::Player(new Tga2D::CSprite("sprites/debugpixel.dds")));
+	
 }
 
 //aIsPlaying is an atomic bool to close the gameplay thread
@@ -32,11 +34,16 @@ void CGameWorld::Update(float aDeltaTime, std::atomic<bool>& aIsPlaying)
 {
 	myPlayer->Update(aDeltaTime);
 	Studio::RendererAccessor::GetInstance()->Render(*myPlayer);
+
+	for (int i = 0; i < myPlayer->GetBullets().size(); i++)
+	{
+		Studio::RendererAccessor::GetInstance()->Render(*myPlayer->GetBullets()[i]);
+	}
 }
 
 void CGameWorld::Render()
 {
-	myTga2dLogoSprite->Render();
+	//myTga2dLogoSprite->Render();
 	myRenderer.Render();
 }
 

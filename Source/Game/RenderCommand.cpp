@@ -51,6 +51,7 @@ namespace Studio
 
 	void RenderCommand::Render()
 	{
+		mySprite->SetPosition({ myPosition.x, myPosition.y });
 		mySprite->Render();
 	}
 
