@@ -8,7 +8,6 @@ namespace Studio
 	class GameObject;
 }
 
-
 class Renderer
 {
 public:
@@ -19,7 +18,8 @@ public:
 	}
 	~Renderer() = default;
 	void Init();
-	void RenderObject(Studio::RenderCommand aRenderCommand);
+	void RenderRenderCommand(Studio::RenderCommand aRenderCommand);
+	void Render(Studio::GameObject& aGameObject);
 	void SwapBuffers();
 	void Render();
 

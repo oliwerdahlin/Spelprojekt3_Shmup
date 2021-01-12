@@ -39,6 +39,7 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>GameObjects\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="RendererAccessor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Health.h" />
@@ -84,6 +85,7 @@
     <ClInclude Include="macros.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="RendererAccessor.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BaseObjects">

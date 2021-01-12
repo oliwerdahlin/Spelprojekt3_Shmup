@@ -9,9 +9,14 @@ void Renderer::Init()
 /// <summary>
 /// Add a game object to the render buffer
 /// </summary>
-void Renderer::RenderObject(Studio::RenderCommand aRenderCommand)
+void Renderer::RenderRenderCommand(Studio::RenderCommand aRenderCommand)
 {
 	GetWriteToBuffer().push_back(aRenderCommand);
+}
+
+void Renderer::Render(Studio::GameObject& aGameObject)
+{
+	GetWriteToBuffer().push_back(aGameObject.GetRenderCommand());
 }
 
 void Renderer::SwapBuffers()

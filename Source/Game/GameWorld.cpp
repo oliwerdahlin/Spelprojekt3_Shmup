@@ -3,6 +3,7 @@
 #include<iostream>
 #include "Player.h"
 #include <tga2d/sprite/sprite.h>
+#include "RendererAccessor.h"
 
 CGameWorld::CGameWorld()
 {
@@ -19,6 +20,7 @@ CGameWorld::~CGameWorld()
 void CGameWorld::Init()  
 {
 	myRenderer.Init();
+	Studio::RendererAccessor::SetInstance(&myRenderer);
 	myTga2dLogoSprite = new Tga2D::CSprite("sprites/tga_logo.dds");
 	myTga2dLogoSprite->SetPivot({ 0.5f, 0.5f });
 	myTga2dLogoSprite->SetPosition({ 0.5f, 0.5f });
@@ -29,7 +31,7 @@ void CGameWorld::Init()
 void CGameWorld::Update(float aDeltaTime, std::atomic<bool>& aIsPlaying)
 {
 	myPlayer->Update(aDeltaTime);
-	myRenderer.RenderObject(myPlayer->GetRenderCommand());
+	Studio::RendererAccessor::GetInstance()->Render(*myPlayer);
 }
 
 void CGameWorld::Render()
