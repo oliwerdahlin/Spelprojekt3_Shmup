@@ -18,6 +18,11 @@ CGameWorld::~CGameWorld()
 	SAFE_DELETE(myPlayer);
 }
 
+void CGameWorld::MoveLogo()
+{
+	myTga2dLogoSprite->SetPosition({ 0.8f,0.5f });
+}
+
 void CGameWorld::Init()  
 {
 	myRenderer.Init();
@@ -51,3 +56,5 @@ void CGameWorld::SwapBuffers()
 {
 	myRenderer.SwapBuffers();
 }
+
+

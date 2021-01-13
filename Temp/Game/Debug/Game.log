@@ -1,4 +1,3 @@
-﻿  stdafx.cpp
-  Game.cpp
-  GameWorld.cpp
-  Game.vcxproj -> D:\Github\Spelprojekt3_Shmup\Source\..\Lib\Game_Debug.lib
+﻿  GameWorld.cpp
+  TextElement.cpp
+C:\Users\Oliwer\Documents\GitHub\Spelprojekt3_Shmup\Source\Game\GameWorld.cpp(30,27): error C3867: 'CGameWorld::MoveLogo': non-standard syntax; use '&' to create a pointer to member

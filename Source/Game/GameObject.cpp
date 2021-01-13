@@ -28,6 +28,7 @@ namespace Studio
 	{
 		return myCollider.Intersects(aGameObject.myCollider);
 	}
+
 	bool GameObject::Contains(const GameObject& aGameObject)
 	{
 		return myCollider.Contains(aGameObject.myCollider);
